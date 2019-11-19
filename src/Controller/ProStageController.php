@@ -18,6 +18,7 @@ class ProStageController extends AbstractController
     //méthode Templates
         return $this->render('pro_stage/accueil.html.twig', [
             'controller_name' => 'ProStageController_accueil',
+            'name' => 'accueil',
         ]);
         
     }
@@ -32,6 +33,7 @@ class ProStageController extends AbstractController
     //méthode Templates
         return $this->render('pro_stage/entreprises.html.twig', [
             'controller_name' => 'ProStageController_entreprises',
+            'name' => 'entreprises',
         ]);
     }
 
@@ -45,6 +47,7 @@ class ProStageController extends AbstractController
     //méthode Templates
         return $this->render('pro_stage/formations.html.twig', [
             'controller_name' => 'ProStageController_formations',
+            'name' => 'formations',
         ]);
     
     }
@@ -58,6 +61,7 @@ class ProStageController extends AbstractController
         return $this->render('pro_stage/stages.html.twig', [
             'controller_name' => 'ProStageController_stages',
             'identifiant' => $id,
+            'name' => 'stages',
         ]);
         
         
