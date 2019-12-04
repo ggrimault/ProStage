@@ -2,6 +2,9 @@
 <html>
     <head>
         <meta charset="UTF-8">
+        {% block stylesheet %}
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        {% endblock %}
         <title>
             {% block titre %} 
                 ProStage
@@ -9,9 +12,43 @@
         </title>
     </head>
     <body>
-
-        <h1> ----------------- entete ----------------- </h1>
-        {% block entete %}
+<!-- DEBUT DE LENTETE -->
+        
+        <div class="container-fluid">
+	<div class="row">
+		<div class="col-md-12 bg-dark text-white">
+			<h3>
+				ProStage
+			</h3>
+			<dl>
+				<dt>
+					Un site pour stages en recherche
+				</dt>
+				<dd>
+					En effet, vous pouvez beaucoup de stage a prostage.
+				</dd>
+				
+			</dl>
+			<nav class="navbar navbar-expand-lg navbar-light bg-dark text-white">
+				 
+				<button class="navbar-toggler bg-dark text-white" type="button" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+					<span class="navbar-toggler-icon "></span>
+				</button> <a class="navbar-brand bg-dark text-white" href="{{ path('ProStageController_accueil') }}">Accueil</a>
+				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+					<ul class="navbar-nav bg-dark text-white">
+						<li class="nav-item">
+							 <a class="nav-link text-white" href="{{ path('ProStageController_entreprises') }}">Entreprises</a>
+						</li>
+                        <li class="nav-item">
+							 <a class="nav-link text-white" href="{{ path('ProStageController_formations') }}">Formations</a>
+						</li>						
+					</ul>	
+				</div>
+			</nav>
+		</div>
+	</div>
+</div>
+{% block entete %}
         {% endblock %}
 
         <h1> ----------------- menu ----------------- </h1>
