@@ -12,13 +12,14 @@
         </title>
     </head>
     <body>
-<!-- DEBUT DE LENTETE -->
+    
+<!-- ENTETE -->
         
-        <div class="container-fluid">
+<div class="container-fluid">
 	<div class="row">
 		<div class="col-md-12 bg-dark text-white">
 			<h3>
-				ProStage
+				ProStage - {% block nomPage %} {% endblock %}
 			</h3>
 			<dl>
 				<dt>
@@ -33,7 +34,7 @@
 				 
 				<button class="navbar-toggler bg-dark text-white" type="button" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
 					<span class="navbar-toggler-icon "></span>
-				</button> <a class="navbar-brand bg-dark text-white" href="{{ path('ProStageController_accueil') }}">Accueil</a>
+				</button> <a class="navbar-brand bg-dark text-white" href="{{ path('ProStageController_accueil') }}">Accueil </a>
 				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 					<ul class="navbar-nav bg-dark text-white">
 						<li class="nav-item">
@@ -48,22 +49,19 @@
 		</div>
 	</div>
 </div>
-{% block entete %}
-        {% endblock %}
 
-        <h1> ----------------- menu ----------------- </h1>
-        {% block menu %}
-        {% endblock %}
 
-        <h1> ----------------- contenu ----------------- </h1>
-        {% block contenu %}
-        {% endblock %}
+<!-- CONTENU -->
+{% block contenu %}
+{% endblock %}
 
-        <h1> ----------------- PiedPage ----------------- </h1>
-        {% block PiedPage %}
-        {% endblock %}
+<!--PIED DE PAGE -->
+{% block PiedPage %}
+{% endblock %}
 
-        {% block javascripts %}
-        {% endblock %}
+<!-- JAVASCRIPT -->
+{% block javascripts %}
+{% endblock %}
+
     </body>
 </html>
