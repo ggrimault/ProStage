@@ -55,7 +55,9 @@ class ProStageController extends AbstractController
     public function stages($id)
     {
     //méthode Response
-        //return new Response("<html><body><h1>Cette page affichera le descriptif du stage ayant pour identifiant". $id."</h1></body></html>");
+        /*
+        return new Response("<html><body><h1>Cette page affichera le descriptif du stage ayant pour identifiant". $id."</h1></body></html>");
+        */
 
     //méthode Templates
         return $this->render('pro_stage/stages.html.twig', [

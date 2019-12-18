@@ -39,7 +39,7 @@ class Entreprise
     private $lienSite;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Stage", mappedBy="monEntreprise")
+     * @ORM\OneToMany(targetEntity="App\Entity\Stage", mappedBy="entreprise")
      */
     private $stages;
 
@@ -113,7 +113,7 @@ class Entreprise
     {
         if (!$this->stages->contains($stage)) {
             $this->stages[] = $stage;
-            $stage->setMonEntreprise($this);
+            $stage->setEntreprise($this);
         }
 
         return $this;
@@ -124,8 +124,8 @@ class Entreprise
         if ($this->stages->contains($stage)) {
             $this->stages->removeElement($stage);
             // set the owning side to null (unless already changed)
-            if ($stage->getMonEntreprise() === $this) {
-                $stage->setMonEntreprise(null);
+            if ($stage->getEntreprise() === $this) {
+                $stage->setEntreprise(null);
             }
         }
 
