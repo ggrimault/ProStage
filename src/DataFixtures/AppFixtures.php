@@ -13,6 +13,8 @@ class AppFixtures extends Fixture
 {
     public function load(ObjectManager $manager)
     {
+
+
         // $product = new Product();
         // $manager->persist($product);
 
@@ -43,5 +45,8 @@ class AppFixtures extends Fixture
         $manager->persist($Stage);
 
         $manager->flush();
+        
+
+
     }
 }
