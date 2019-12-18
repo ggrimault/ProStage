@@ -29,7 +29,7 @@ class Formation
     private $acronyme;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Stage", mappedBy="formations")
+     * @ORM\ManyToMany(targetEntity="App\Entity\Stage", mappedBy="mesFormations")
      */
     private $stages;
 
@@ -79,7 +79,7 @@ class Formation
     {
         if (!$this->stages->contains($stage)) {
             $this->stages[] = $stage;
-            $stage->addFormation($this);
+            $stage->addMesFormation($this);
         }
 
         return $this;
@@ -89,7 +89,7 @@ class Formation
     {
         if ($this->stages->contains($stage)) {
             $this->stages->removeElement($stage);
-            $stage->removeFormation($this);
+            $stage->removeMesFormation($this);
         }
 
         return $this;

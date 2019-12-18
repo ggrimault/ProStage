@@ -26,10 +26,10 @@ class Entreprise
     /**
      * @ORM\Column(type="string", length=100)
      */
-    private $activité;
+    private $activite;
 
     /**
-     * @ORM\Column(type="string", length=150)
+     * @ORM\Column(type="string", length=100)
      */
     private $adresse;
 
@@ -39,7 +39,7 @@ class Entreprise
     private $lienSite;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Stage", mappedBy="Entreprise")
+     * @ORM\OneToMany(targetEntity="App\Entity\Stage", mappedBy="monEntreprise")
      */
     private $stages;
 
@@ -65,14 +65,14 @@ class Entreprise
         return $this;
     }
 
-    public function getActivité(): ?string
+    public function getActivite(): ?string
     {
-        return $this->activité;
+        return $this->activite;
     }
 
-    public function setActivité(string $activité): self
+    public function setActivite(string $activite): self
     {
-        $this->activité = $activité;
+        $this->activite = $activite;
 
         return $this;
     }
@@ -113,7 +113,7 @@ class Entreprise
     {
         if (!$this->stages->contains($stage)) {
             $this->stages[] = $stage;
-            $stage->setEntreprise($this);
+            $stage->setMonEntreprise($this);
         }
 
         return $this;
@@ -124,8 +124,8 @@ class Entreprise
         if ($this->stages->contains($stage)) {
             $this->stages->removeElement($stage);
             // set the owning side to null (unless already changed)
-            if ($stage->getEntreprise() === $this) {
-                $stage->setEntreprise(null);
+            if ($stage->getMonEntreprise() === $this) {
+                $stage->setMonEntreprise(null);
             }
         }
 
