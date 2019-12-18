@@ -10,7 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity(repositoryClass="App\Repository\StageRepository")
  */
 class Stage
-{
+{   
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
