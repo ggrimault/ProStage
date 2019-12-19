@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block nomPage %}
-    {{ name }}
+    {{ infoFormation.nom }}
 {% endblock %}
 
 {% block titreContenu %}
@@ -18,7 +18,6 @@
 
 <thead>
     <tr>
-        <th> ID  </th>
         <th> Titres  </th>
         <th> Entreprises  </th>
         <th> Formations  </th>
@@ -27,15 +26,14 @@
 </thead>
 
 <tbody>
-    {% for stage in listeStages %}
+    {% for stage in infoFormation.stages %}
     <tr> 
-        <td> {{ stage.ID}} </td>
         <td> {{ stage.titre }} </td>
         <td> {{ stage.entreprise.nom }} </td>
         <td> 
-        {% for formation in stage.formations %}
-        -- {{ formation.acronyme }} --     
-        {% endfor %}
+            {% for formation in stage.formations %}
+            -- {{ formation.acronyme }} --     
+            {% endfor %}
         </td>
         <td> <a href="{{ path('ProStageController_stages', { 'id': stage.ID}) }}" > Voir l'offre de stage </a> </td>
     </tr>

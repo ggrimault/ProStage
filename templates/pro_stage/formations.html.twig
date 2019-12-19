@@ -17,7 +17,6 @@
 
 <thead>
     <tr>
-        <th> ID  </th>
         <th> Acronyme  </th>
         <th> Nom Complet </th>
         <th> Offre de stage </th>
@@ -27,10 +26,9 @@
 <tbody>
     {% for formation in listeFormations %}
     <tr> 
-        <td> {{ formation.id}} </td>
         <td> {{ formation.acronyme }} </td>
         <td> {{ formation.nom }} </td>
-        <td> <a href="{{ path('ProStageController_parFormation', { 'id': formation.ID}) }}" > Voir les offres de stage </a> </td>
+        <td> <a href="{{ path('ProStageController_parFormation', { id: formation.id}) }}" > Voir les offres de stage </a> </td>
     </tr>
     {% endfor %}
 </tbody>

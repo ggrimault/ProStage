@@ -92,19 +92,19 @@ class AppFixtures extends Fixture
         }
 
     //GENERATION DES STAGES
-        $nbStage = $faker->numberBetween($min = 15, $max = 20);
+        $nbStage = $faker->numberBetween($min = 50, $max = 60);
         $listeStage = array();
 
         for ($i = 0; $i <= $nbStage; $i++)
         {
             $unStage = new Stage();
             $unStage->setTitre( $faker->jobTitle );
-            $unStage->setDescMission( $faker->text($maxNbChars = $faker->numberBetween($min = 200, $max = 800)) );
+            $unStage->setDescMission( $faker->realText($maxNbChars = $faker->numberBetween($min = 1000, $max = 800)) );
             $unStage->setMail( $faker->email );
 
             //CHOISIR LE NB ET LE,S FORMATION,S QUI VONT CORRESPONDRE
 
-                for( $i = 1; $i <= $faker->numberBetween($min = 1, $max = 3); $i++ )
+                for( $j = 1; $j <= $faker->numberBetween($min = 1, $max = 3); $j++ )
                 {
                     $numeroFormation = $faker->numberBetween($min = 0, $max = 2);
                     $unStage->addFormation( $listeFormation[ $numeroFormation ] );

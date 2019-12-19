@@ -97,7 +97,7 @@ class ProStageController extends AbstractController
             return $this->render('pro_stage/stages.html.twig', [
                 'controller_name' => 'ProStageController_stages',
                 'identifiant' => $id,
-                'name' => 'stages',
+                'name' => 'stage',
                 'stage' => $stage,
             ]);
     }
@@ -127,18 +127,15 @@ class ProStageController extends AbstractController
     {
     //Traitement métier/controlleur
 
-        $repositoryStage = $this->getDoctrine()->getRepository(Stage::class);
         $repositoryFormation = $this->getDoctrine()->getRepository(Formation::class);
-
         $formation = $repositoryFormation->find($id);
-        $stages = $repositoryStage->findBy(["formations[0]"=>$id]); //Ca marche? Plusieurs formation
-
 
 
     //Envoie à la vue
         return $this->render('pro_stage/parFormation.html.twig', [
             'controller_name' => 'ProStageController_parFormation',
             'name' => 'parFormation',
+            'infoFormation' => $formation,
         ]);
     }
 }
