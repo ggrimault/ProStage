@@ -84,7 +84,7 @@ class ProStageController extends AbstractController
     //Traitement métier/controlleur
 
         $repositoryStage = $this->getDoctrine()->getRepository(Stage::class);
-        $stage = $repositoryStage->findBy(['id'=>$id]);
+        $stage = $repositoryStage->find($id);
 
     //Envoie à la Vue
 
@@ -131,7 +131,7 @@ class ProStageController extends AbstractController
         $repositoryFormation = $this->getDoctrine()->getRepository(Formation::class);
 
         $formation = $repositoryFormation->find($id);
-        $stages = $repositoryStage->findBy(["formations"=>$id]); //Ca marche? Plusieurs formation
+        $stages = $repositoryStage->findBy(["formations[0]"=>$id]); //Ca marche? Plusieurs formation
 
 
 

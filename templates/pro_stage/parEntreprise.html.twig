@@ -5,11 +5,19 @@
 {% endblock %}
 
 {% block nomPage %}
-    {{ name }}
+    {{ infoEntreprise.nom }}
 {% endblock %}
 
 {% block titreContenu %}
-    Bienvenue sur la page de l'entreprise     {{ name }} <br>
+    Bienvenue sur la page de l'entreprise     {{ infoEntreprise.nom }} <br>
+    <p> Informations sur l'entreprise: 
+    <ul>
+        <li> activité : {{ infoEntreprise.activite }} </li>
+        <li> adresse : {{ infoEntreprise.adresse }} </li>
+        <li> site web : {{ infoEntreprise.lienSite }} </li>
+    </ul>
+
+
     Voici la liste des stages proposés !
 {% endblock %}
 
