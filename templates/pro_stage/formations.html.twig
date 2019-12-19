@@ -9,5 +9,27 @@
 {% endblock %}
 
 {% block titreContenu %}
-    Liste des formations de l'IUT
+    Liste des formations recherchées
+{% endblock %}
+
+
+{% block tableau %}
+
+<thead>
+    <tr>
+        <th> ID  </th>
+        <th> Acronyme  </th>
+        <th> Nom Complet </th>
+    </tr>
+</thead>
+
+<tbody>
+    {% for formation in listeFormations %}
+    <tr> 
+        <td> {{ formation.id}} </td>
+        <td> {{ formation.acronyme }} </td>
+        <td> {{ formation.nom }} </td>
+    </tr>
+    {% endfor %}
+</tbody>
 {% endblock %}

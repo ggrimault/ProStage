@@ -9,5 +9,25 @@
 {% endblock %}
 
 {% block titreContenu %}
- descriptif du stage ayant pour identifiant {{ identifiant }}
+ Description du stage ! {{ stage.titre }}
 {% endblock %}
+
+
+
+{% block contenuAutre %}
+<h4> Recherche d'un Stagiaire en {{ stage.titre }} </h4> <br>
+<p><small> Par l'entreprise <a href="{{ path('ProStageController_entreprises', { 'id': stage.entreprise.ID}) }}" > {{ stage.entreprise.nom }} </a></small> </p>
+<p> Description de la mission : <br>
+{{ stage.descMission }} </p>
+
+<p> Formation visée-s : -
+{% for formation in stage.formations %}
+        {{ formation.acronyme }} -
+{% endfor %}
+</p>
+
+<p> Contact : {{ stage.mail }} . </p>
+
+{% endblock %}
+
+

@@ -6,7 +6,6 @@ ProStageController_entreprises:
     path: /entreprises
     controller: App\Controller\ProStageController::entreprises
 
-
 ProStageController_formations:
     path: /formations
     controller: App\Controller\ProStageController::formations
@@ -15,3 +14,10 @@ ProStageController_stages:
     path: /stages/{id}
     controller: App\Controller\ProStageController::stages
 
+ProStageController_parEntreprise:
+    path: /entreprises/{id}
+    controller: App\Controller\ProStageController::parEntreprise
+
+ProStageController_parFormation:
+    path: /formations/{id}
+    controller: App\Controller\ProStageController::parFormation

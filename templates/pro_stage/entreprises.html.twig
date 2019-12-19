@@ -9,5 +9,33 @@
 {% endblock %}
 
 {% block titreContenu %}
-    Liste des entreprises proposant un stage
+    Liste des entreprises proposant des stages
+{% endblock %}
+
+
+{% block tableau %}
+
+<thead>
+    <tr>
+        <th> ID  </th>
+        <th> Nom  </th>
+        <th> activité </th>
+        <th> adresse  </th>
+        <th> site web  </th>
+        <th> voir les offres  </th>
+    </tr>
+</thead>
+
+<tbody>
+    {% for entreprise in listeEntreprises %}
+    <tr> 
+        <td> {{ entreprise.id}} </td>
+        <td> {{ entreprise.nom }} </td>
+        <td> {{ entreprise.activite }} </td>
+        <td> {{ entreprise.adresse }} </td>
+        <td> {{ entreprise.lienSite }} </td>
+        <td> <a href="{{ path('ProStageController_parEntreprise', { 'id': entreprise.ID}) }}" > Voir les offres </a>  </td>
+    </tr>
+    {% endfor %}
+</tbody>
 {% endblock %}

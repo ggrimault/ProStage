@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block titre %}
+    {{ parent() }} : formation {{ name }}
+{% endblock %}
+
+{% block nomPage %}
+    {{ name }}
+{% endblock %}
+
+{% block titreContenu %}
+    Bienvenue sur la page de la formation      {{ name }} <br>
+    Voici la liste des stages proposés !
+{% endblock %}
+
+
+{% block tableau %}
+
+<thead>
+    <tr>
+        <th> ID  </th>
+        <th> Titres  </th>
+        <th> Entreprises  </th>
+        <th> Formations  </th>
+        <th> Liens vers l'offre  </th>
+    </tr>
+</thead>
+
+<tbody>
+    {% for stage in listeStages %}
+    <tr> 
+        <td> {{ stage.ID}} </td>
+        <td> {{ stage.titre }} </td>
+        <td> {{ stage.entreprise.nom }} </td>
+        <td> 
+        {% for formation in stage.formations %}
+        -- {{ formation.acronyme }} --     
+        {% endfor %}
+        </td>
+        <td> <a href="{{ path('ProStageController_stages', { 'id': stage.ID}) }}" > Voir l'offre de stage </a> </td>
+    </tr>
+    {% endfor %}
+</tbody>
+{% endblock %}
+
