@@ -17,7 +17,7 @@ class ProStageController extends AbstractController
     public function accueil(StageRepository $repositoryStage)
     {
     //Traitement métier/controlleur
-        $listeStages = $repositoryStage->findAll();
+        $listeStages = $repositoryStage->findAllStages();
    
     //méthode Templates
         return $this->render('pro_stage/accueil.html.twig', [
@@ -64,23 +64,30 @@ class ProStageController extends AbstractController
             ]);
     }
     
-    public function parEntreprise(Entreprise $entreprise)
+    public function parEntreprise(StageRepository $repositoryStage, Entreprise $entreprise )
     {
+    //Traitement métier/controlleur
+    $stages = $repositoryStage->findByEntreprise($entreprise);
     //Envoie à la vue
         return $this->render('pro_stage/parEntreprise.html.twig', [
             'controller_name' => 'ProStageController_parEntreprise',
             'name' => 'parEntreprise',
             'infoEntreprise' => $entreprise,
+            'stages' => $stages,
         ]);
     }
 
-    public function parFormation(Formation $formation)
+    public function parFormation(Formation $formation, StageRepository $repositoryStage )
     {
+    //Traitement métier/controlleur
+    $stages = $repositoryStage->findStagesParFormation($formation);
+
     //Envoie à la vue
         return $this->render('pro_stage/parFormation.html.twig', [
             'controller_name' => 'ProStageController_parFormation',
             'name' => 'parFormation',
             'infoFormation' => $formation,
+            'stages' => $stages,
         ]);
     }
 }

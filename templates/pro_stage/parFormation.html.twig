@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block titre %}
-    {{ parent() }} : formation {{ name }}
+    {{ parent() }} : stage pour les {{ name }}
 {% endblock %}
 
 {% block nomPage %}
@@ -20,21 +20,15 @@
     <tr>
         <th> Titres  </th>
         <th> Entreprises  </th>
-        <th> Formations  </th>
         <th> Liens vers l'offre  </th>
     </tr>
 </thead>
 
 <tbody>
-    {% for stage in infoFormation.stages %}
+    {% for stage in stages %}
     <tr> 
         <td> {{ stage.titre }} </td>
         <td> {{ stage.entreprise.nom }} </td>
-        <td> 
-            {% for formation in stage.formations %}
-            -- {{ formation.acronyme }} --     
-            {% endfor %}
-        </td>
         <td> <a href="{{ path('ProStageController_stages', { 'id': stage.ID}) }}" > Voir l'offre de stage </a> </td>
     </tr>
     {% endfor %}

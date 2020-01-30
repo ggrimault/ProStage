@@ -34,10 +34,10 @@
 </thead>
 
 <tbody>
-    {% for stage in listeStages %}
+    {% for stage in stages %}
     <tr> 
         <td> {{ stage.titre }} </td>
-        <td> {{ stage.entreprise.nom }} </td>
+        <td> {{ infoEntreprise.nom }} </td>
         <td> 
         {% for formation in stage.formations %}
         -- {{ formation.acronyme }} --     
