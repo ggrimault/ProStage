@@ -12,6 +12,12 @@ use App\Repository\EntrepriseRepository;
 use App\Repository\FormationRepository;
 use App\Repository\StageRepository;
 
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\UrlType;
+use Symfony\Component\HttpFoundation\Request;
+use Doctrine\Common\Persistence\ObjectManager;
+
 class ProStageController extends AbstractController
 {
     public function accueil(StageRepository $repositoryStage)
@@ -88,6 +94,41 @@ class ProStageController extends AbstractController
             'name' => 'parFormation',
             'infoFormation' => $formation,
             'stages' => $stages,
+        ]);
+    }
+
+    public function ajouterEntreprise(Request $requeteHttp, ObjectManager $manager)
+    {
+    //CREATION FORMULAIRE
+    $entreprise = new Entreprise();
+
+    $formulaireEntreprise = $this -> createFormBuilder($entreprise)
+                                  -> add('nom', TextType::class)
+                                  -> add('activite', TextareaType::class)
+                                  -> add('adresse',TextType::class )
+                                  -> add('lienSite', UrlType::class)
+                                  -> getForm();
+    
+    $vueFormulaireEntreprise = $formulaireEntreprise->createView();
+
+    //recuperation du formulaire
+    $formulaireEntreprise->handleRequest($requeteHttp);
+
+    if ( $formulaireEntreprise->isSubmitted())
+    {
+        //sauvegarder l'entreprise
+        $manager->persist($entreprise);
+        $manager->flush();
+
+        //rediriger vers l'accueil
+        return $this->redirectToRoute('ProStageController_accueil');
+    }
+
+    //Envoie à la vue
+        return $this->render('pro_stage/ajouterEntreprise.html.twig', [
+            'controller_name' => 'ProStageController_creerEntreprise',
+            'name' => 'Ajouter Entreprise',
+            'vueFormulaireEntreprise' => $vueFormulaireEntreprise,
         ]);
     }
 }
