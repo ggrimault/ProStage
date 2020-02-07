@@ -131,4 +131,38 @@ class ProStageController extends AbstractController
             'vueFormulaireEntreprise' => $vueFormulaireEntreprise,
         ]);
     }
+
+
+
+    public function modifierEntreprise(Request $requeteHttp, ObjectManager $manager, Entreprise $entreprise)
+    {
+    //CREATION FORMULAIRE
+    $formulaireEntreprise = $this -> createFormBuilder($entreprise)
+                                  -> add('nom', TextType::class)
+                                  -> add('activite', TextareaType::class)
+                                  -> add('adresse',TextType::class )
+                                  -> add('lienSite', UrlType::class)
+                                  -> getForm();
+    $vueFormulaireEntreprise = $formulaireEntreprise->createView();
+
+    //recuperation du formulaire
+    $formulaireEntreprise->handleRequest($requeteHttp);
+
+    if ( $formulaireEntreprise->isSubmitted())
+    {
+        //sauvegarder l'entreprise
+        $manager->persist($entreprise);
+        $manager->flush();
+
+        //rediriger vers l'accueil
+        return $this->redirectToRoute('ProStageController_accueil');
+    }
+
+    //Envoie à la vue
+        return $this->render('pro_stage/modifierEntreprise.html.twig', [
+            'controller_name' => 'ProStageController_modifierEntreprise',
+            'name' => 'Modifier Entreprise',
+            'vueFormulaireEntreprise' => $vueFormulaireEntreprise,
+        ]);
+    }
 }

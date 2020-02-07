@@ -25,3 +25,7 @@ ProStageController_parFormation:
 ProStageController_ajouterEntreprise:
     path: /ajouterEntreprise
     controller: App\Controller\ProStageController::ajouterEntreprise
+
+ProStageController_modifierEntreprise:
+    path: /entreprises/{id}/modifier
+    controller: App\Controller\ProStageController::modifierEntreprise

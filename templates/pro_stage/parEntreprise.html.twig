@@ -46,6 +46,8 @@
         <td> <a href="{{ path('ProStageController_stages', { 'id': stage.ID}) }}" > Voir l'offre de stage </a> </td>
     </tr>
     {% endfor %}
+
+    <p> des information erronées?  <a href="{{ path('ProStageController_modifierEntreprise', { 'id': infoEntreprise.ID}) }}" > modifier </a> </p>
 </tbody>
 {% endblock %}
 
