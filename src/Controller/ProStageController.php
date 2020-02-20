@@ -104,17 +104,17 @@ class ProStageController extends AbstractController
 
     $formulaireEntreprise = $this -> createFormBuilder($entreprise)
                                   -> add('nom', TextType::class)
-                                  -> add('activite', TextareaType::class)
-                                  -> add('adresse',TextType::class )
+                                  -> add('activite', TextAreaType::class)
+                                  -> add('adresse', TextType::class)
                                   -> add('lienSite', UrlType::class)
                                   -> getForm();
     
-    $vueFormulaireEntreprise = $formulaireEntreprise->createView();
+
 
     //recuperation du formulaire
     $formulaireEntreprise->handleRequest($requeteHttp);
 
-    if ( $formulaireEntreprise->isSubmitted())
+    if ( $formulaireEntreprise->isSubmitted() && $formulaireEntreprise->isValid())
     {
         //sauvegarder l'entreprise
         $manager->persist($entreprise);
@@ -123,6 +123,8 @@ class ProStageController extends AbstractController
         //rediriger vers l'accueil
         return $this->redirectToRoute('ProStageController_accueil');
     }
+
+    $vueFormulaireEntreprise = $formulaireEntreprise->createView();
 
     //Envoie à la vue
         return $this->render('pro_stage/ajouterEntreprise.html.twig', [
@@ -138,17 +140,17 @@ class ProStageController extends AbstractController
     {
     //CREATION FORMULAIRE
     $formulaireEntreprise = $this -> createFormBuilder($entreprise)
-                                  -> add('nom', TextType::class)
-                                  -> add('activite', TextareaType::class)
-                                  -> add('adresse',TextType::class )
-                                  -> add('lienSite', UrlType::class)
+                                  -> add('nom')
+                                  -> add('activite',TextAreaType::class)
+                                  -> add('adresse') 
+                                  -> add('lienSite')
                                   -> getForm();
     $vueFormulaireEntreprise = $formulaireEntreprise->createView();
 
     //recuperation du formulaire
     $formulaireEntreprise->handleRequest($requeteHttp);
 
-    if ( $formulaireEntreprise->isSubmitted())
+    if ( $formulaireEntreprise->isSubmitted() && $formulaireEntreprise->isValid())
     {
         //sauvegarder l'entreprise
         $manager->persist($entreprise);
