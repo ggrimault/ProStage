@@ -11,6 +11,8 @@ use App\Entity\Stage;
 use App\Repository\EntrepriseRepository;
 use App\Repository\FormationRepository;
 use App\Repository\StageRepository;
+use App\Form\EntrepriseType;
+use App\Form\StageType;
 
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -99,24 +101,19 @@ class ProStageController extends AbstractController
 
     public function ajouterEntreprise(Request $requeteHttp, ObjectManager $manager)
     {
-    //CREATION FORMULAIRE
+    //creation d'un objet Entreprise vide
     $entreprise = new Entreprise();
 
-    $formulaireEntreprise = $this -> createFormBuilder($entreprise)
-                                  -> add('nom', TextType::class)
-                                  -> add('activite', TextAreaType::class)
-                                  -> add('adresse', TextType::class)
-                                  -> add('lienSite', UrlType::class)
-                                  -> getForm();
-    
+    //creation du formulaire ( a partir du formulaire externalisé )
+    $formulaireEntreprise = $this -> createForm(EntrepriseType::class, $entreprise);    
 
 
-    //recuperation du formulaire
+    //enregistrement des données apres soumission du formulaire dans l'objet entreprise
     $formulaireEntreprise->handleRequest($requeteHttp);
 
     if ( $formulaireEntreprise->isSubmitted() && $formulaireEntreprise->isValid())
     {
-        //sauvegarder l'entreprise
+        //sauvegarder l'entreprise en bd
         $manager->persist($entreprise);
         $manager->flush();
 
@@ -124,6 +121,7 @@ class ProStageController extends AbstractController
         return $this->redirectToRoute('ProStageController_accueil');
     }
 
+    //affichage du formulaire
     $vueFormulaireEntreprise = $formulaireEntreprise->createView();
 
     //Envoie à la vue
@@ -139,13 +137,7 @@ class ProStageController extends AbstractController
     public function modifierEntreprise(Request $requeteHttp, ObjectManager $manager, Entreprise $entreprise)
     {
     //CREATION FORMULAIRE
-    $formulaireEntreprise = $this -> createFormBuilder($entreprise)
-                                  -> add('nom')
-                                  -> add('activite',TextAreaType::class)
-                                  -> add('adresse') 
-                                  -> add('lienSite')
-                                  -> getForm();
-    $vueFormulaireEntreprise = $formulaireEntreprise->createView();
+    $formulaireEntreprise = $this -> createForm(EntrepriseType::class, $entreprise);
 
     //recuperation du formulaire
     $formulaireEntreprise->handleRequest($requeteHttp);
@@ -159,12 +151,47 @@ class ProStageController extends AbstractController
         //rediriger vers l'accueil
         return $this->redirectToRoute('ProStageController_accueil');
     }
+                            
+    $vueFormulaireEntreprise = $formulaireEntreprise->createView();
 
     //Envoie à la vue
         return $this->render('pro_stage/modifierEntreprise.html.twig', [
             'controller_name' => 'ProStageController_modifierEntreprise',
             'name' => 'Modifier Entreprise',
             'vueFormulaireEntreprise' => $vueFormulaireEntreprise,
+        ]);
+    }
+
+    public function ajouterStage(Request $requeteHttp, ObjectManager $manager)
+    {
+    //creation d'un objet Stage vide
+    $stage = new Stage();
+
+    //creation du formulaire ( a partir du formulaire externalisé )
+    $formulaireStage = $this -> createForm(StageType::class, $stage);    
+
+
+    //enregistrement des données apres soumission du formulaire dans l'objet entreprise
+    $formulaireStage->handleRequest($requeteHttp);
+
+    if ( $formulaireStage->isSubmitted() && $formulaireStage->isValid())
+    {
+        //sauvegarder l'entreprise en bd
+        $manager->persist($stage);
+        $manager->flush();
+
+        //rediriger vers l'accueil
+        return $this->redirectToRoute('ProStageController_accueil');
+    }
+
+    //affichage du formulaire
+    $vueFormulaireStage = $formulaireStage->createView();
+
+    //Envoie à la vue
+        return $this->render('pro_stage/ajouterStage.html.twig', [
+            'controller_name' => 'ProStageController_creerStage',
+            'name' => 'Ajouter un Stage',
+            'vueFormulaireStage' => $vueFormulaireStage,
         ]);
     }
 }

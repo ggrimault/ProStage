@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block titre %}
+    {{ parent() }} : ajouter un Stage
+{% endblock %}
+
+{% block nomPage %}
+    {{ name }}
+{% endblock %}
+
+{% block titreContenu %}
+    Veuillez creer un stage !
+{% endblock %}
+
+
+{% block contenuAutre %}
+    <div class="container">
+            <div class="row">
+            <div class="col bg-info">
+
+    {{ form_start(vueFormulaireStage) }}
+        <div>
+            {{ form_row(vueFormulaireStage.titre) }}            
+        </div>
+        <div>
+            {{ form_row(vueFormulaireStage.descMission) }}
+            <br>
+        </div>
+        <div>
+            {{ form_row(vueFormulaireStage.mail) }}
+            <br>
+        </div>
+            {{ form_row(vueFormulaireStage.entreprise) }}
+        <br>
+        <button type="submit" class = "btn btn-dark">Ajouter</button>
+        <br><br>
+    {{ form_end(vueFormulaireStage) }}
+
+            </div>
+            </div>
+    </div>
+
+{% endblock %}
+
