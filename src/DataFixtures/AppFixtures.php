@@ -7,6 +7,7 @@ use Doctrine\Common\Persistence\ObjectManager;
 use App\Entity\Entreprise;
 use App\Entity\Formation;
 use App\Entity\Stage;
+use App\Entity\User;
 
 
 class AppFixtures extends Fixture
@@ -123,10 +124,19 @@ class AppFixtures extends Fixture
             $manager->persist($stage);
         }
 
+        $unUser = new User();
+        $unUser->setEmail("guillaume.grimault64@orange.fr");
+        $unUser->setRoles(["ROLE_ADMIN"]);
+        $unUser->setPassword('$2y$10$heMA3Lg2f7H9G9d2FFvnSeq2HBN4EHmgnYe9BQW.C30Z1MqsqnO8e');
+        $manager->persist($unUser);
 
-    //FIN DE LA CREATION DES DONNES ALEATOIRE
+        $deuxUser = new User();
+        $deuxUser->setEmail("tanguy.grimault64@orange.fr");
+        $deuxUser->setRoles(["ROLE_USER"]);
+        $deuxUser->setPassword('$2y$10$heMA3Lg2f7H9G9d2FFvnSeq2HBN4EHmgnYe9BQW.C30Z1MqsqnO8e');
+        $manager->persist($deuxUser);
+        //FIN DE LA CREATION DES DONNES ALEATOIRE
 
         $manager->flush();
-
     }
 }
