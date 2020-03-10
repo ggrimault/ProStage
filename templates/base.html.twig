@@ -40,13 +40,25 @@
 						<li class="nav-item">
 							 <a class="nav-link text-white" href="{{ path('ProStageController_entreprises') }}">Entreprises</a>
 						</li>
+					</ul>
+					<ul class="navbar-nav bg-dark text-white">
                         <li class="nav-item">
 							 <a class="nav-link text-white" href="{{ path('ProStageController_formations') }}">Formations</a>
 						</li>
+					</ul>
+					<ul class="navbar-nav bg-dark text-white">
 						<li class="nav-item">
 							 <a class="nav-link text-white" href="{{ path('ProStageController_ajouterEntreprise') }}">AjouterEntreprise</a>
 						</li>
-
+					</ul>
+					<ul class="navbar-nav bg-dark text-white ml-auto">
+						<li class="nav-item">
+							{% if is_granted('ROLE_USER') %}
+								<a class="nav-link text-white" href="{{ path('ProStageController_entreprises') }}">Deconnexion</a>
+							{% else %}
+								<a class="nav-link text-white" href="{{ path('ProStageController_entreprises') }}">Connexion</a>
+							{% endif %}
+						</li>
 					</ul>	
 				</div>
 			</nav>
