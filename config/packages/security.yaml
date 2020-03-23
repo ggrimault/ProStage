@@ -34,6 +34,7 @@ security:
         # - { path: ^/profile, roles: ROLE_USER }
         - { path: /ajouterEntreprise, roles: ROLE_ADMIN }
         - { path: /ajouterStage, roles: [ROLE_ADMIN, ROLE_USER] }
+        - { path: /formation_admin, roles: ROLE_ADMIN}
     
     encoders:
         Symfony\Component\Security\Core\User\User:

@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block titre %}index des Formations{% endblock %}
+
+{% block contenuAutre %}
+    <h1>index des Formations</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Acronyme</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for formation in formations %}
+            <tr>
+                <td>{{ formation.id }}</td>
+                <td>{{ formation.nom }}</td>
+                <td>{{ formation.acronyme }}</td>
+                <td>
+                    <a href="{{ path('formation_show', {'id': formation.id}) }}">voir</a>
+                    <a href="{{ path('formation_edit', {'id': formation.id}) }}">modifier</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">Pas de formations trouvées</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('formation_new') }}">Créer Formation</a>
+{% endblock %}
