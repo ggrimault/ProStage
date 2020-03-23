@@ -126,7 +126,7 @@ class AppFixtures extends Fixture
 
         $unUser = new User();
         $unUser->setEmail("guillaume.grimault64@orange.fr");
-        $unUser->setRoles(["ROLE_ADMIN"]);
+        $unUser->setRoles(["ROLE_ADMIN","ROLE_USER"]);
         $unUser->setPassword('$2y$10$heMA3Lg2f7H9G9d2FFvnSeq2HBN4EHmgnYe9BQW.C30Z1MqsqnO8e');
         $manager->persist($unUser);
 
